@@ -309,7 +309,6 @@ foreach ($line in $csv_users)
 		Write-Host "Utilisateur $login introuvable !"
 	}
 	
-	
 	#################################################################################################
 	#################################################################################################
 	#	
@@ -326,21 +325,28 @@ foreach ($line in $csv_users)
 	#################################################################################################
 	#	
 	#	Last but not least,
-	#	Lien symbolique vers /wwwroot/webdav/$user
-	#	Ajout du répertoire en tant que dossier Webdav accessible depuis les internets mondiaux
-	#	Paramétrage des droits corrects
-	#	Ajout de la fonctionnalité DAV sur le dossier
+	#	Lien symbolique vers /wwwroot/webdav/$user - ok
+	#	Paramétrage des droits corrects  - nok
+	#	Ajout de la fonctionnalité DAV sur le dossier  - nok
 	#	
 	#
 	#################################################################################################
 	#################################################################################################	
 	
 	# Concatenation de la variable path web user - ex : C:\inetpub\wwwroot\ + loginuser\
-	#$path_web_user =  Join-Path $path_profs_drive -childpath $login;
-	
+	$path_web_user =  Join-Path $path_web_root -childpath $login;
+		
 	# Creation du lien symbolique
-	#$result = New-Symlink($path_profs_drive,$path_web_user);
-	
+	if(!(Test-Path $path_web_user))
+	{
+		$result = New-Symlink -LiteralPath $path_web_user -TargetPath $path_profs_drive;
+		echo "Symlink $path_web_user to $path_profs_drive has been created !";
+	}
+	else
+	{
+		echo "Symlink to user directory already exists!";
+	}
+		
 	#############################
 	#	RAZ des variables
 	#############################
