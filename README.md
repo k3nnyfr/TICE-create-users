@@ -20,6 +20,7 @@ Pre-requisites
 - 1 Directory for Students documents
 - 1 Directory for Teachers profiles
 - 1 Directory for Teachers documents
+- All the steps mentioned before can be executed automatically by launching init_paths_ou.ps1
 - Extensions for Powershell : CmdLets for Active Directory : http://www.quest.com/powershell/activeroles-server.aspx
 
 The created profiles are roaming profiles. 
@@ -36,11 +37,16 @@ Files
 - netlogon scripts/exemple_profs.vbs : template of teachers netlogon script
 - eleves.csv : CSV source file for students
 - profs.csv : CSV source file for teachers
+- init_paths_ou.ps1 : create folder structure + Active Directory OU before creation of users
 
 Additional notes
 --------------
 - I forced one time password for students as Toto1234, easier for everyone
 - I forced passwords in teachers CSV file to keep password from a year to another, or to force it with Toto1234
+
+Update - 2013-06-10
+--------------
+- Added init_paths_ou.ps1 : create folder structure + Active Directory OU before creation of users
 
 TODO
 --------------
